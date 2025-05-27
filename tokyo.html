@@ -11,31 +11,35 @@
 	<script src="https://unpkg.com/youtube-background@1.0.14/jquery.youtube-background.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+	<style>
+		body{overflow-x: hidden;}
+		.eng{font-family: "Montserrat", sans-serif;}
+		
+		/* load */
+		.load{position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 100;}
+		.load .flex{display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%;}
+		.load .tower{position: relative; z-index: 1;}
+		.load p{margin-top: 15px; font-weight: 500;}
+		.load .back{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+		.load .back span{display: block; position: absolute; border-radius: 50%; opacity: 0.5; animation: blink 1.2s steps(3, start) infinite;}
+		.load .back .l1{top: -50px; left: -80px; width: 80px; height: 80px; background-color: #008bb6;}
+		.load .back .l2{top: -83px; left: -30px; width: 55px; height: 55px; background-color: #ffb522; animation-delay: .2s;}
+		.load .back .l3{top: 0px; left: 30px; width: 40px; height: 40px; background-color: #f69c93; animation-delay: .4s;}
+		@keyframes blink {
+			50%{opacity: 0;}
+		}
+	   
+		/* visual */
+		.visual{width: 100%; height: 100vh; position: relative;}
+		.visual .video{width: 100%; height: 100%; overflow: hidden; position: relative;}
+		.visual .video-container {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+		.visual .tokyo{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -80%); color: #fff; font-size: 24vw; line-height: 1.2em; z-index: 10;}
+		
+		/* YouTube Background 스타일 수정 */
+		.youtube-background {width: 100%; height: 100%;}
+		.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
+	</style>
 </head>
-<style>
-	body{overflow-x: hidden;}
-	.eng{font-family: "Montserrat", sans-serif;}
-	
-	/* load */
-	.load{position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 1;}
-	.load .flex{display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%;}
-	.load .tower{position: relative; z-index: 1;}
-	.load p{margin-top: 15px; font-weight: 500;}
-	.load .back{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
-	.load .back span{display: block; position: absolute; border-radius: 50%; opacity: 0.5; animation: blink 1.2s steps(3, start) infinite;}
-	.load .back .l1{top: -50px; left: -80px; width: 80px; height: 80px; background-color: #008bb6;}
-	.load .back .l2t{top: -83px; left: -30px; width: 55px; height: 55px; background-color: #ffb522; animation-delay: .2s;}
-	.load .back .l3{top: 0px; left: 30px; width: 40px; height: 40px; background-color: #f69c93; animation-delay: .4s;}
-	@keyframes blink {
-		50%{opacity: 0;}
-	}
-   
-	/* visual */
-	.visual{width: 100%; height: 100vh;}
-	.visual .video{width: 100%; height: 100%; overflow: hidden;}
-	.visual .tokyo{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -80%); color: #fff; font-size: 24vw; line-height: 1.2em;}
-</style>
-
 <body>
 	<div class="load">
 		<div class="flex">
@@ -46,31 +50,47 @@
 	</div>
 	<div class="visual">
 		<div class="video">
-			<div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-end-at="31" data-vbg-poster="true"></div>
+			<div class="video-container">
+				<div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-end-at="31" data-vbg-mute="true"></div>
+			</div>
 		</div>
-		<strong class="tokyo en">TOKYO</strong>
+		<strong class="tokyo eng">TOKYO</strong>
 	</div>
 
 	<script>
-		$('[data-vbg]').youtube_background(); // 실행
-		
-		//페이지 로딩 
 		$('html').css('overflow','hidden');
-		window.addEventListener('load', function () {
-			$('html').css('overflow','auto');
-			$('.load').fadeOut();
+		
+		$(document).ready(function() {
+			setTimeout(function() {
+				$('[data-vbg]').youtube_background();
+			}, 100);
+			
+			$(window).on('load', function() {
+				setTimeout(function() {
+					setTimeout(function() {
+						$('html').css('overflow','auto');
+						$('.load').fadeOut();
+					}, 1000);
+					
+					// GSAP
+					gsap.registerPlugin(ScrollTrigger);
+					gsapAni();					
+				}, 1000);
+			});
 		});
 
-		gsap.to('.video', {
-			y: 50,
-			scale: 0.5,
-			borderRadius: 100,
-			scrollTrigger: {
-				trigger: '.visual',  //시작점 설정
-				pin: true,
-        		scrub: true,
-			}
-		});		
+		function gsapAni(){
+			gsap.to('.video', {
+				y: 50,
+				scale: 0.5,
+				borderRadius: 100,
+				scrollTrigger: {
+					trigger: '.visual',
+					pin: true,
+					scrub: true,
+				}
+			});
+		}
 	</script>
 </body>
 </html>
