@@ -14,7 +14,7 @@
 	<style>
 		body{overflow-x: hidden;}
 		.eng{font-family: "Montserrat", sans-serif;}
-		
+
 		/* load */
 		.load{position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 100;}
 		.load .flex{display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%;}
@@ -28,16 +28,19 @@
 		@keyframes blink {
 			50%{opacity: 0;}
 		}
-	   
+
 		/* visual */
 		.visual{width: 100%; height: 100vh; position: relative;}
-		.visual .video{width: 100%; height: 100%; overflow: hidden; position: relative;}
+		.video-wrapper{position: relative; height: 100%;}
+		.visual .video{width: 100%; height: 100%; margin: 0 auto; overflow: hidden; position: relative;}
 		.visual .video-container {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
-		.visual .tokyo{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -80%); color: #fff; font-size: 24vw; line-height: 1.2em; z-index: 10;}
-		
+		.visual .tokyo{position: absolute; top: 100px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 24vw; line-height: 1.2em;}
+
 		/* YouTube Background 스타일 수정 */
 		.youtube-background {width: 100%; height: 100%;}
 		.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
+
+		.temp .inner{background-color: #ccc; height: 500px;}
 	</style>
 </head>
 <body>
@@ -49,64 +52,65 @@
 		</div>
 	</div>
 	<div class="visual">
-		<div class="video">
-			<div class="video-container">
-				<div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-end-at="31" data-vbg-mute="true"></div>
+		<div class="video-wrapper">
+			<div class="video">
+				<div class="video-container">
+					<!-- <div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-end-at="31" data-vbg-mute="true"></div> -->
+					<div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-mute="true"></div>
+				</div>
+				<strong class="tokyo eng">TOKYO</strong>
 			</div>
+			<strong class="tokyo eng" style="color: black; z-index: -1;">TOKYO</strong>
 		</div>
-		<strong class="tokyo eng">TOKYO</strong>
 	</div>
+
+	<div class="temp"><div class="inner"></div></div>
 
 	<script>
 		$('html').css('overflow','hidden');
-		
+
 		$(document).ready(function() {
 			setTimeout(function() {
 				$('[data-vbg]').youtube_background();
 			}, 100);
-			
+
 			$(window).on('load', function() {
 				setTimeout(function() {
 					setTimeout(function() {
 						$('html').css('overflow','auto');
 						$('.load').fadeOut();
 					}, 1000);
-					
+
 					// GSAP
 					gsap.registerPlugin(ScrollTrigger);
-					gsapAni();					
+					gsapAni();
 				}, 1000);
 			});
 		});
 
 		function gsapAni(){
-			gsap.to('.video', {
-				y: 50,
-				scale: 0.5,
-				borderRadius: 100,
-				scrollTrigger: {
-					trigger: '.visual',
-					pin: true,
-					scrub: true,
+			ScrollTrigger.matchMedia({
+				"(min-width: 768px)": function(){
+					let tl_v = gsap.timeline({
+						scrollTrigger: {
+							trigger: '.visual',
+							pin: true,
+							scrub: true,
+						}
+					});
+
+					tl_v.to('.video', {
+						width: "70%",
+						height: "70%",
+						marginTop: 350,
+						borderRadius: 30
+					})
+					.to('.tokyo', {
+						top: -300
+					}, 0);
 				}
 			});
 		}
 	</script>
 </body>
 </html>
-
-
-
-<!-- <div class="tmp">
-	<h2>**gsap 스크롤 페이지 컨셉**</h2>
-	<ol>
-		<li>- 도쿄 소개  (제품소개, 브랜드소개 컨셉처럼)</li>
-		<li>- 헤더 푸터 다 구현할 것</li>
-		<li>- 반응형으로 진행</li>
-		<li>- 원페이지</li>
-		<li>- 참고한 사이트 및 출처들 하단에 footer로 남기기</li>
-		<li>- ©2025 Kwon Minji ʕꔸᴥꔸʔ</li>
-		<li>- 메인 상단 풀페이지에서 스크롤 하면 풀페이지로 넘어가는거 구현</li>
-		<li>- 추천 관광지 목록이나 먹거리 등은 ajax로 추가</li>
-	</ol>
-</div> -->
