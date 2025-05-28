@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GSAP Practice</title>
 	<link rel="stylesheet" href="./asset/css/reset_v1.2.css">
+	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<!-- script -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="https://unpkg.com/youtube-background@1.0.14/jquery.youtube-background.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
@@ -40,6 +42,13 @@
 		.youtube-background {width: 100%; height: 100%;}
 		.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
 
+		.mid-txt{text-align: center; padding-bottom: 180px; font-size: 56px; line-height: 1.3em; opacity: 0.3;}
+		.mid-txt svg{width: 50px; height: 50px;}
+
+		@media screen and (max-width:992px) {
+			.mid-txt{font-size: 6vw;}
+		}
+
 		.temp .inner{background-color: #ccc; height: 500px;}
 	</style>
 </head>
@@ -55,13 +64,20 @@
 		<div class="video-wrapper">
 			<div class="video">
 				<div class="video-container">
-					<!-- <div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-end-at="31" data-vbg-mute="true"></div> -->
-					<div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-mute="true"></div>
+					<div id="yt-bg" data-vbg-autoplay="true" data-vbg="https://youtu.be/O2yMv1JDYRU" data-vbg-start-at="11" data-vbg-end-at="31" data-vbg-mute="true"></div>
 				</div>
 				<strong class="tokyo eng">TOKYO</strong>
 			</div>
 			<strong class="tokyo eng" style="color: black; z-index: -1;">TOKYO</strong>
 		</div>
+	</div>
+
+	<div class="mid-txt">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+  			<path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
+		</svg>
+		<p>明日は明日の風が吹く｡</p>
+		<strong class="eng">Tomorrow is another day</strong><br>
 	</div>
 
 	<div class="temp"><div class="inner"></div></div>
