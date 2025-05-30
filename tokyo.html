@@ -7,7 +7,7 @@
 	<title>GSAP Practice</title>
 	<link rel="stylesheet" href="./asset/css/reset_v1.2.css">
 	<!-- font -->
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<!-- script -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="https://unpkg.com/youtube-background@1.0.14/jquery.youtube-background.min.js"></script>
@@ -15,7 +15,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 	<style>
 		body{overflow-x: hidden;}
-		.eng{font-family: "Montserrat", sans-serif;}
+		.eng{font-family: "Montserrat", sans-serif !important;}
+		.jp{font-family: "Mochiy Pop One", sans-serif !important;}
 
 		/* load */
 		.load{position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 100;}
@@ -32,7 +33,7 @@
 		}
 
 		/* visual */
-		.visual{width: 100%; height: 100vh; position: relative;}
+		.visual{width: 100%; height: 100vh; position: relative; opacity: 0.1;}
 		.video-wrapper{position: relative; height: 100%;}
 		.visual .video{width: 100%; height: 100%; margin: 0 auto; overflow: hidden; position: relative;}
 		.visual .video-container {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
@@ -42,7 +43,7 @@
 		.youtube-background {width: 100%; height: 100%;}
 		.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
 
-		.mid-txt{text-align: center; padding-bottom: 180px; font-size: 56px; line-height: 1.3em; opacity: 0.3;}
+		.mid-txt{position: relative; text-align: center; padding-bottom: 180px; font-size: 56px; line-height: 1.3em; color: red; opacity: 0.1;}
 		.mid-txt svg{width: 50px; height: 50px;}
 
 		@media screen and (max-width:992px) {
@@ -76,8 +77,8 @@
 		<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
   			<path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
 		</svg>
-		<p>明日は明日の風が吹く｡</p>
-		<strong class="eng">Tomorrow is another day</strong><br>
+		<p class="jp txt1">明日は明日の風が吹く｡</p>
+		<strong class="eng txt2" style="display: block;">Tomorrow is another day</strong><br>
 	</div>
 
 	<div class="temp"><div class="inner"></div></div>
@@ -105,6 +106,7 @@
 		});
 
 		function gsapAni(){
+			//반응형
 			ScrollTrigger.matchMedia({
 				"(min-width: 768px)": function(){
 					let tl_v = gsap.timeline({
@@ -112,6 +114,8 @@
 							trigger: '.visual',
 							pin: true,
 							scrub: true,
+							end: "+=100%",
+							markers: true
 						}
 					});
 
@@ -127,6 +131,25 @@
 				}
 			});
 		}
+
+		function gsapAni02(){
+			const aniTxt = gsap.timeline();
+			aniTxt.from(".mid-txt .txt1", {x: innerWidth * 1})
+					.from(".mid-txt .txt2", {x: innerWidth * -1})
+
+			ScrollTrigger.create({
+            animation: aniTxt,
+				trigger: ".mid-txt",
+				scrub: true,
+				pin: true,
+				anticipatePin: 1,
+				start: "top top", // 더 늦게 시작
+				end: "bottom center",
+				refreshPriority: -1,
+            //markers: true
+        });
+		}
+		gsapAni02();
 	</script>
 </body>
 </html>
