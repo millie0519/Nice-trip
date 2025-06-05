@@ -5,16 +5,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GSAP Practice</title>
-	<link rel="stylesheet" href="./asset/css/reset_v1.2.css">
-	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./asset/css/reset_v1.2.css">
 	<!-- script -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<script src="https://unpkg.com/youtube-background@1.0.14/jquery.youtube-background.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 	<style>
 		body{overflow-x: hidden;}
+		img{display: block;}
 		.eng{font-family: "Montserrat", sans-serif !important;}
 		.jp{font-family: "Mochiy Pop One", sans-serif !important;}
 
@@ -31,7 +33,7 @@
 		@keyframes blink {
 			50%{opacity: 0;}
 		}
-
+ 
 		/* visual */
 		.visual{width: 100%; height: 100vh; position: relative; opacity: 0.1;}
 		.video-wrapper{position: relative; height: 100%;}
@@ -43,7 +45,7 @@
 		.youtube-background {width: 100%; height: 100%;}
 		.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
 
-		.mid-txt{position: relative; text-align: center; padding-bottom: 180px; font-size: 56px; line-height: 1.3em; color: red; opacity: 0.1;}
+		.mid-txt{position: relative; text-align: center; padding-bottom: 180px; font-size: 56px; line-height: 1.3em; opacity: 0.1;}
 		.mid-txt svg{width: 50px; height: 50px;}
 
 		@media screen and (max-width:992px) {
@@ -81,7 +83,12 @@
 		<strong class="eng txt2" style="display: block;">Tomorrow is another day</strong><br>
 	</div>
 
-	<div class="temp"><div class="inner"></div></div>
+	<div>
+		<div class="">
+			<h3>긴자</h3>
+			<img src="https://search.pstatic.net/common?src=http%3A%2F%2Fmedia-cdn.tripadvisor.com%2Fmedia%2Fphoto-o%2F10%2F55%2Fe5%2Ff2%2Fwako-building-with-a.jpg&type=m1500_travelsearch" alt="">
+		</div>
+	</div>
 
 	<script>
 		$('html').css('overflow','hidden');
@@ -115,7 +122,6 @@
 							pin: true,
 							scrub: true,
 							end: "+=100%",
-							markers: true
 						}
 					});
 
@@ -132,24 +138,24 @@
 			});
 		}
 
-		function gsapAni02(){
-			const aniTxt = gsap.timeline();
-			aniTxt.from(".mid-txt .txt1", {x: innerWidth * 1})
-					.from(".mid-txt .txt2", {x: innerWidth * -1})
+		// function gsapAni02(){
+		// 	const aniTxt = gsap.timeline();
+		// 	aniTxt.from(".mid-txt .txt1", {x: innerWidth * 1})
+		// 			.from(".mid-txt .txt2", {x: innerWidth * -1})
 
-			ScrollTrigger.create({
-            animation: aniTxt,
-				trigger: ".mid-txt",
-				scrub: true,
-				pin: true,
-				anticipatePin: 1,
-				start: "top top", // 더 늦게 시작
-				end: "bottom center",
-				refreshPriority: -1,
-            //markers: true
-        });
-		}
-		gsapAni02();
+		// 	ScrollTrigger.create({
+      //       animation: aniTxt,
+		// 		trigger: ".mid-txt",
+		// 		scrub: true,
+		// 		pin: true,
+		// 		anticipatePin: 1,
+		// 		start: "top top", // 더 늦게 시작
+		// 		end: "bottom center",
+		// 		refreshPriority: -1,
+      //       //markers: true
+      //   });
+		// }
+		// gsapAni02();
 	</script>
 </body>
 </html>
