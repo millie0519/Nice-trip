@@ -5,60 +5,24 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GSAP Practice</title>
-	<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./asset/css/reset_v1.2.css">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+	<!-- css -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+	<link rel="stylesheet" href="asset/css/reset_v1.2.css">
+	<link rel="stylesheet" href="asset/css/common.css">
+	<link rel="stylesheet" href="asset/css/tokyo.css">
 	<!-- script -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<script src="https://unpkg.com/youtube-background@1.0.14/jquery.youtube-background.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-	<style>
-		body{overflow-x: hidden;}
-		img{display: block;}
-		.eng{font-family: "Montserrat", sans-serif !important;}
-		.jp{font-family: "Mochiy Pop One", sans-serif !important;}
-
-		/* load */
-		.load{position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 100;}
-		.load .flex{display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%;}
-		.load .tower{position: relative; z-index: 1;}
-		.load p{margin-top: 15px; font-weight: 500;}
-		.load .back{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
-		.load .back span{display: block; position: absolute; border-radius: 50%; opacity: 0.5; animation: blink 1.2s steps(3, start) infinite;}
-		.load .back .l1{top: -50px; left: -80px; width: 80px; height: 80px; background-color: #008bb6;}
-		.load .back .l2{top: -83px; left: -30px; width: 55px; height: 55px; background-color: #ffb522; animation-delay: .2s;}
-		.load .back .l3{top: 0px; left: 30px; width: 40px; height: 40px; background-color: #f69c93; animation-delay: .4s;}
-		@keyframes blink {
-			50%{opacity: 0;}
-		}
- 
-		/* visual */
-		.visual{width: 100%; height: 100vh; position: relative; opacity: 0.1;}
-		.video-wrapper{position: relative; height: 100%;}
-		.visual .video{width: 100%; height: 100%; margin: 0 auto; overflow: hidden; position: relative;}
-		.visual .video-container {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
-		.visual .tokyo{position: absolute; top: 100px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 24vw; line-height: 1.2em;}
-
-		/* YouTube Background 스타일 수정 */
-		.youtube-background {width: 100%; height: 100%;}
-		.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
-
-		.mid-txt{position: relative; text-align: center; padding-bottom: 180px; font-size: 56px; line-height: 1.3em; opacity: 0.1;}
-		.mid-txt svg{width: 50px; height: 50px;}
-
-		@media screen and (max-width:992px) {
-			.mid-txt{font-size: 6vw;}
-		}
-
-		.temp .inner{background-color: #ccc; height: 500px;}
-	</style>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+	<script src="asset/js/tokyo.js"></script>
 </head>
 <body>
 	<div class="load">
 		<div class="flex">
-			<img src="./asset/img/tokyo_tower.png" class="tower" alt="">
+			<img src="asset/img/tokyo/tokyo_tower.png" class="tower" alt="">
 			<div class="back"><span class="l1"></span><span class="l2"></span><span class="l3"></span></div>
 			<p class="eng">Please Wait...</p>
 		</div>
@@ -75,87 +39,71 @@
 		</div>
 	</div>
 
-	<div class="mid-txt">
-		<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-  			<path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
-		</svg>
-		<p class="jp txt1">明日は明日の風が吹く｡</p>
-		<strong class="eng txt2" style="display: block;">Tomorrow is another day</strong><br>
-	</div>
-
-	<div>
-		<div class="">
-			<h3>긴자</h3>
-			<img src="https://search.pstatic.net/common?src=http%3A%2F%2Fmedia-cdn.tripadvisor.com%2Fmedia%2Fphoto-o%2F10%2F55%2Fe5%2Ff2%2Fwako-building-with-a.jpg&type=m1500_travelsearch" alt="">
+	<div class="mid-txt pb70">
+		<div class="inner">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="mb30">
+				  <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
+			</svg>
+			<p class="txt1 jp fw700">旅っていいものです</p>
+			<p class="txt2">여행이란 좋은 것입니다.</p>
+			<p class="txt1 jp fw700">疲れることもがっかりすることもあるけれど、</p>
+			<p class="txt2">피곤할수도 실망할수도 있지만,</p>
+			<p class="txt1 jp fw700">そこには何かがあります。</p>
+			<p class="txt2">거기에는 무엇인가가 있습니다.</p>
+			<p class="txt1 jp mt30"><small>「ラオスにいったい何があるというんですか？」 -村上春樹</small></p>
 		</div>
 	</div>
 
-	<script>
-		$('html').css('overflow','hidden');
+	<div class="city-wrap">
+		<div class="group">
+			<div class="center inner">
+				<div class="lft">
+					<div class="tit-box">
+						<h3 class="tit1">긴자 <span class="jp">(銀座)</span></h3>
+						<h3 class="tit2 eng">Ginza</h3>
+					</div>
+					<p>
+						도쿄 긴자는 일본 최고급 쇼핑 거리로, 명품 브랜드 매장과 세련된 카페, 고급 레스토랑이 즐비합니다.<br>
+						전통적인 화과자점과 현대적인 건축물이 조화를 이루며, 예술 갤러리와 극장도 많아 다양한 문화 체험이 가능합니다.
+					</p>
+				</div>
+				<div class="pictures">
+					<img src="https://search.pstatic.net/common?src=http%3A%2F%2Fmedia-cdn.tripadvisor.com%2Fmedia%2Fphoto-o%2F10%2F55%2Fe5%2Ff2%2Fwako-building-with-a.jpg&type=m1500_travelsearch" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="group">
+			<div class="center inner">
+				<div class="lft">
+					<div class="tit-box">
+						<h3 class="tit1">시부야 <span class="jp">(渋谷)</span></h3>
+						<h3 class="tit2 eng">Shibuya</h3>
+					</div>
+					<p>도쿄 시부야는 젊음과 활력이 넘치는 트렌디한 거리로, 세계적으로 유명한 시부야 스크램블 교차로가 있는 곳입니다.<br>패션, 음악, 엔터테인먼트의 중심지로 다양한 상점과 클럽, 맛집이 모여 있으며, 최신 일본 문화를 체험하기 좋은 지역입니다.</p>
+				</div>
+				<div class="pictures">
+					<img src="https://search.pstatic.net/common?src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F5885_000_7%2F20200924214929884_VVGPWACPC.jpg%2Ffb176_69_i1.jpg%3Ftype%3Dw540_fst&type=m1500_travelsearch" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="group">
+			<div class="center inner">
+				<div class="lft">
+					<div class="tit-box">
+						<h3 class="tit1">하라주쿠 <span class="jp">(原宿)</span></h3>
+						<h3 class="tit2 eng">Harajuku</h3>
+					</div>
+					<p>개성 넘치는 패션과 스트리트 문화의 중심지로, 젊은이들의 트렌디한 스타일을 볼 수 있는 다케시타 거리로 유명합니다. 독특한 카페, 빈티지숍, 아트숍이 많으며, 근처에 메이지 신궁과 요요기 공원이 있어 자연과 문화도 함께 즐길 수 있습니다.</p>
+				</div>
+				<div class="pictures">
+					<img src="asset/img/tokyo/city/img_Harajuku_01.jpg" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
 
-		$(document).ready(function() {
-			setTimeout(function() {
-				$('[data-vbg]').youtube_background();
-			}, 100);
-
-			$(window).on('load', function() {
-				setTimeout(function() {
-					setTimeout(function() {
-						$('html').css('overflow','auto');
-						$('.load').fadeOut();
-					}, 1000);
-
-					// GSAP
-					gsap.registerPlugin(ScrollTrigger);
-					gsapAni();
-				}, 1000);
-			});
-		});
-
-		function gsapAni(){
-			//반응형
-			ScrollTrigger.matchMedia({
-				"(min-width: 768px)": function(){
-					let tl_v = gsap.timeline({
-						scrollTrigger: {
-							trigger: '.visual',
-							pin: true,
-							scrub: true,
-							end: "+=100%",
-						}
-					});
-
-					tl_v.to('.video', {
-						width: "70%",
-						height: "70%",
-						marginTop: 350,
-						borderRadius: 30
-					})
-					.to('.tokyo', {
-						top: -300
-					}, 0);
-				}
-			});
-		}
-
-		// function gsapAni02(){
-		// 	const aniTxt = gsap.timeline();
-		// 	aniTxt.from(".mid-txt .txt1", {x: innerWidth * 1})
-		// 			.from(".mid-txt .txt2", {x: innerWidth * -1})
-
-		// 	ScrollTrigger.create({
-      //       animation: aniTxt,
-		// 		trigger: ".mid-txt",
-		// 		scrub: true,
-		// 		pin: true,
-		// 		anticipatePin: 1,
-		// 		start: "top top", // 더 늦게 시작
-		// 		end: "bottom center",
-		// 		refreshPriority: -1,
-      //       //markers: true
-      //   });
-		// }
-		// gsapAni02();
-	</script>
+	<footer style="background-color: #eee;">
+		<div class="center" style="height: 500px;"></div>
+	</footer>
 </body>
 </html>

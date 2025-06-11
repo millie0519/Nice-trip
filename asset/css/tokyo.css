@@ -1,0 +1,57 @@
+/* font */
+.eng{font-family: "Montserrat", sans-serif !important;}
+.jp{font-family: "Zen Kaku Gothic New", sans-serif !important;}
+
+
+/* load */
+.load{position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 100;}
+.load .flex{display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%;}
+.load .tower{display: block; position: relative; z-index: 1;}
+.load p{margin-top: 15px; font-weight: 500;}
+.load .back{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.load .back span{display: block; position: absolute; border-radius: 50%; opacity: 0.5; animation: blink 1.2s steps(3, start) infinite;}
+.load .back .l1{top: -50px; left: -80px; width: 80px; height: 80px; background-color: #008bb6;}
+.load .back .l2{top: -83px; left: -30px; width: 55px; height: 55px; background-color: #ffb522; animation-delay: .2s;}
+.load .back .l3{top: 0px; left: 30px; width: 40px; height: 40px; background-color: #f69c93; animation-delay: .4s;}
+@keyframes blink {
+	50%{opacity: 0;}
+}
+
+
+/* visual */
+.visual{width: 100%; height: 100vh; position: relative; opacity: 0.1;}
+.video-wrapper{position: relative; height: 100%;}
+.visual .video{width: 100%; height: 100%; margin: 0 auto; overflow: hidden; position: relative;}
+.visual .video-container {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+.visual .tokyo{position: absolute; top: 100px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 24vw; line-height: 1.2em;}
+
+/* YouTube Background 스타일 수정 */
+.youtube-background {width: 100%; height: 100%;}
+.youtube-background iframe {width: 100%; height: 100%; pointer-events: none;}
+
+
+/* mid-txt */
+.mid-txt{
+	display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
+	height: 100vh; font-size: 56px; text-align: center; line-height: 1.3em;
+	opacity: 0.1;
+}
+.mid-txt svg{width: 50px; height: 50px;}		
+@media screen and (max-width:992px) {
+	.mid-txt{font-size: 6vw;}
+}
+
+
+/* city */
+.city-wrap{padding-bottom: 180px;}
+.city-wrap .group{border-top: 1px solid #000;}
+.city-wrap .group .inner{display: flex; justify-content: space-between; padding: 50px 0;}
+.city-wrap .group .lft{position: relative; margin-top: 50px; margin-right: 5%;}
+.city-wrap .group .lft::before{display: block; position: absolute; top: 0; left: 0; width: 25px; height: 3px; background-color: #000; content: '';}
+.city-wrap .group .tit-box{position: relative; overflow: hidden; margin: 25px 0;}
+.city-wrap .group .tit-box h3{font-size: 36px; line-height: 1.3em; font-weight: 500;}
+.city-wrap .group .tit-box h3 span{line-height: 100%;}
+.city-wrap .group .tit-box .tit2{position: absolute; top: 0; left: 0; transform: translateY(-100%); width: 100%;}
+.city-wrap .group p{line-height: 1.4em;}
+.city-wrap .group .pictures{position: relative; width: 60%; height: 0; padding-bottom: 45%; flex-shrink: 0;}
+.city-wrap .group .pictures img{display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;}
