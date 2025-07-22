@@ -15,13 +15,22 @@ $(function(){
 
 				// GSAP
 				gsap.registerPlugin(ScrollTrigger);
+				gsap.registerPlugin(ScrollSmoother);
+				ScrollSmoother.create({
+					wrapper: "#smooth-wrapper",
+					content: "#smooth-content",
+					smooth: 1,
+					effects: true,
+				});
 				gsapAni();
-			}, 1000); 
+			}, 1000);
 		});
 	});
 
+
 	function gsapAni(){
 		//반응형
+		var moveY = $(window).innerWidth() * 0.2;
 		ScrollTrigger.matchMedia({
 			"(min-width: 768px)": function(){
 				let tl_v = gsap.timeline({
@@ -29,25 +38,22 @@ $(function(){
 						trigger: '.visual',
 						pin: true,
 						scrub: true,
-						end: "+=919",
-						//markers: true
 					}
 				});
 
 				tl_v.to('.video', {
 					width: "70%",
-					height: "70%",					
-					marginTop: 350,
+					height: "70%",
+					marginTop: moveY,
 					borderRadius: 30
 				})
 				.to('.tokyo', {
-					top: -300
+					y: -moveY
 				}, 0);
 			}
 		});
 	}
-
-	gsap.registerPlugin(ScrollTrigger);
+	
 	function gsapAni02(){
 		const aniTxt = gsap.timeline();
 		aniTxt.from(".mid-txt .txt1", {x: innerWidth * 1, duration: 4})
@@ -57,9 +63,8 @@ $(function(){
 			animation: aniTxt,
 			trigger: ".mid-txt",
 			start: "top top",
-			end: "20% top",
+			end: "+=200%",
 			scrub: true,
-			markers: true,
 			pin: true,
 			anticipatePin: 1,
 			refreshPriority: -1
@@ -68,27 +73,37 @@ $(function(){
 	gsapAni02();
 
 	function gsapAni03(){
-		let tl_v3 = gsap.timeline({
-			scrollTrigger: {
-				trigger: '.city-wrap',
-				pin: true,
-				scrub: true,
-				//markers: true
-			}
+		gsap.utils.toArray(".city-wrap .group").forEach((item) => {
+			ScrollTrigger.create({
+				trigger: item,
+				start: "top top",
+				//end: "bottom 20%",
+				markers: true,
+				onEnter: () => {animate(item)}, 
+			});
 		});
 
-		tl_v3.to('.city-wrap .pictures', {
-			width: "40%",
-			paddingBottom: "15%",
-			end: () => "+=" + window.innerHeight,
-		})
-		// .to('.tokyo', {
-		// 	top: -300
-		// }, 0);
+		const animate = (item) => {
+			gsap.to(item, 
+				{ toggleClass: {
+					targets: item,
+					className: "act"
+				}},
+			);
+		}
 	}
-	//gsapAni03();
+	gsapAni03();
+ 
+	var flag = 1;
+	$(window).on('scroll', function() {
+		//console.log($(window).scrollTop(), $('.mid-txt').offset().top)
+		if (flag === 1 && $(window).scrollTop() > window.innerHeight) {
+			ScrollTrigger.refresh();
+			flag = 0;
+		}
+	});
 
-	$(window).scroll(function(){
-		// console.log($(window).scrollTop(), $('.city-wrap').offset().top)
+	$(window).resize(function(){
+		ScrollTrigger.refresh();
 	});
 });
